@@ -1,7 +1,6 @@
 package com.lemonpiggy.shadow;
 
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.ThemedReactContext;
@@ -13,7 +12,6 @@ import com.facebook.react.views.view.ReactViewGroup;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import android.graphics.Color;
-import com.lemonpiggy.shadow.ShadowDrawable;
 
 public class RNShadowViewManager extends SimpleViewManager<View> {
 
