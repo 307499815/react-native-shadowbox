@@ -34,7 +34,6 @@ public class RNShadowViewManager extends SimpleViewManager<View> {
         int offsetX = shadowOption.getInt("offsetX");
         int offsetY = shadowOption.getInt("offsetY");
         ShadowDrawable.setShadowDrawable(view,
-                        Color.parseColor(backgroundColor),
                         PixelUtil.toPixelFromDIP(borderRadius),
                         Color.parseColor(shadowColor),
                         PixelUtil.toPixelFromDIP(shadowRadius),
