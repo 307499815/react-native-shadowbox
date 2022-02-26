@@ -15,7 +15,7 @@ import com.facebook.react.bridge.ReadableMap;
 import android.graphics.Color;
 import com.lemonpiggy.shadow.ShadowDrawable;
 
-public class RNShadowViweManager extends SimpleViewManager<View> {
+public class RNShadowViewManager extends SimpleViewManager<View> {
 
     @Override
     public String getName() {
