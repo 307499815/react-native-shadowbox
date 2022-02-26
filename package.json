@@ -1,0 +1,44 @@
+{
+  "name": "react-native-shadowbox",
+  "description": "A react native shadow view",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "author": "piaoliu",
+  "license": "MIT",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/307499815/react-native-shadowbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/307499815/react-native-shadowbox/issues"
+  },
+  "homepage": "https://github.com/307499815/react-native-shadowbox",
+  "keywords": [
+    "react",
+    "react-native",
+    "react-component",
+    "react-native-shadow",
+    "react-native-shadow-view",
+    "react-native-shadowview",
+    "shadow",
+    "shadow-view",
+    "shadowview",
+    "appcompat",
+    "support",
+    "android",
+    "ios",
+    "component"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "update-patch": "npm version patch",
+    "publish": "npm publish"
+  },
+  "peerDependencies": {
+    "react-native": "^0.56.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.0"
+  }
+}
