@@ -84,8 +84,7 @@ getShadow(style={}) {
 
 getAndroidBox() {
     let style = StyleSheet.flatten([styles.shadowBox, 
-                  StyleSheet.flatten(this.props.style), 
-                  {overflow:'visible'}]);
+                  StyleSheet.flatten(this.props.style)]);
 
     const outerStlyle = this.getOuterStyle(style);
     const innerStyle = this.getInnerStyle(style);
