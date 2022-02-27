@@ -27,7 +27,7 @@ public class RNShadowViewManager extends SimpleViewManager<View> {
     }
     @ReactProp(name = "shadowOption")
     public void setShadowOption(View view, ReadableMap shadowOption) {
-        if(!shadowOption) return;
+        if(shadowOption == null) return;
         try {
             float borderRadius = (float)shadowOption.getDouble("borderRadius");
             float shadowRadius = (float)shadowOption.getDouble("shadowRadius");
