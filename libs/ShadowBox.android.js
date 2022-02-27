@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
 import {requireNativeComponent,View,StyleSheet,TouchableOpacity,Image} from 'react-native';
+const parseColor = require('color-parse');
 
 var iface = {
   name: 'RNShadowView',
@@ -9,6 +10,14 @@ var iface = {
     ...View.propTypes // include the default view properties
   }
 };
+
+const toColorHex = (value)=>{
+  let res = '';
+  const regValue = Math.max(0,Math.min(255,parseInt(value)||0));
+  res = parseInt(regValue).toString(16).toUpperCase();
+  if(res.length < 2) res = '0'+res;
+  return res;
+}
 
 const RNShadowView = requireNativeComponent('RNShadowView', iface);
 
@@ -34,14 +43,25 @@ export default class ShadowBox extends Component {
   }
 
   getShadowOption(style={}) {
-    const shadowRadius = style.shadowRadius*1 || 10;
+    const factor = 1;
+    const shadowRadius = (style.shadowRadius*1 || 10)*factor;
+    let shadowColor = style.shadowColor || '#F0DEDEDE';
+    const shadowOpacity = (parseFloat(style.shadowOpacity || 1) || 1)*factor;
+
+    const parsed = parseColor(shadowColor);
+    if(!parsed || parsed.space != 'rgb' || !parsed.values?.length) {
+      shadowColor = '#80DEDEDE';
+    } else {
+      shadowColor = `#${toColorHex(shadowOpacity*254)}${toColorHex(parsed.values[0])}${toColorHex(parsed.values[1])}${toColorHex(parsed.values[2])}`;
+    }
+
     let option = {
-      borderRadius:style.borderRadius,
+      shadowColor,
       shadowRadius,
+      borderRadius:style.borderRadius,
       backgroundColor:'#000000ff',
-      shadowColor:style.shadowColor || '#EFEFEF',
-      offsetX:style.shadowOffset?.width||0,
-      offsetY:style.shadowOffset?.height||0,
+      offsetX:(style.shadowOffset?.width||0)*factor,
+      offsetY:(style.shadowOffset?.height||0)*factor,
     };
     return option;
 }
@@ -68,6 +88,7 @@ getShadow(style={}) {
   const offsetX = shadowOption.offsetX;
   const offsetY = shadowOption.offsetY;
   let shadowStyle = {
+    borderWidth:0,
     borderRadius:borderRadius,
     backgroundColor:'rgba(0,0,0,0)',
     width:this.state.width+shadowRadius*2,
@@ -79,12 +100,14 @@ getShadow(style={}) {
     return <Image source={this.props.shadowImage} style={shadowStyle} resizeMode={'contain'}  key={'shadow-box-shadow-image'} fadeDuration={0}/>
   }
 
+  //console.log('###getShadow', shadowOption, shadowStyle)
   return <RNShadowView shadowOption={shadowOption} style={shadowStyle} key={`shadow-box-shadow-view`}/>;
 }
 
 getAndroidBox() {
     let style = StyleSheet.flatten([styles.shadowBox, 
-                  StyleSheet.flatten(this.props.style)]);
+                  StyleSheet.flatten(this.props.style), 
+                  {overflow:'visible'}]);
 
     const outerStlyle = this.getOuterStyle(style);
     const innerStyle = this.getInnerStyle(style);

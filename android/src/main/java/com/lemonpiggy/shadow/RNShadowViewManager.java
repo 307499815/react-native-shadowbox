@@ -27,17 +27,23 @@ public class RNShadowViewManager extends SimpleViewManager<View> {
     }
     @ReactProp(name = "shadowOption")
     public void setShadowOption(View view, ReadableMap shadowOption) {
-        int borderRadius = shadowOption.getInt("borderRadius");
-        int shadowRadius = shadowOption.getInt("shadowRadius");
-        String backgroundColor = shadowOption.getString("backgroundColor");
-        String shadowColor = shadowOption.getString("shadowColor");
-        int offsetX = shadowOption.getInt("offsetX");
-        int offsetY = shadowOption.getInt("offsetY");
-        ShadowDrawable.setShadowDrawable(view,
-                        PixelUtil.toPixelFromDIP(borderRadius),
-                        Color.parseColor(shadowColor),
-                        PixelUtil.toPixelFromDIP(shadowRadius),
-                        PixelUtil.toPixelFromDIP(offsetX),
-                        PixelUtil.toPixelFromDIP(offsetY));
+        if(!shadowOption) return;
+        try {
+            float borderRadius = shadowOption.getFloat("borderRadius");
+            float shadowRadius = shadowOption.getFloat("shadowRadius");
+            String backgroundColor = shadowOption.getString("backgroundColor");
+            String shadowColor = shadowOption.getString("shadowColor");
+            float offsetX = shadowOption.getFloat("offsetX");
+            float offsetY = shadowOption.getFloat("offsetY");
+            ShadowDrawable.setShadowDrawable(view,
+                            PixelUtil.toPixelFromDIP(borderRadius),
+                            Color.parseColor(shadowColor),
+                            PixelUtil.toPixelFromDIP(shadowRadius),
+                            PixelUtil.toPixelFromDIP(offsetX),
+                            PixelUtil.toPixelFromDIP(offsetY));
+        }catch(Exception e) {
+
+        }
+        
     }
 }
