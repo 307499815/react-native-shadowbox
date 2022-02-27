@@ -29,12 +29,12 @@ public class RNShadowViewManager extends SimpleViewManager<View> {
     public void setShadowOption(View view, ReadableMap shadowOption) {
         if(!shadowOption) return;
         try {
-            float borderRadius = shadowOption.getFloat("borderRadius");
-            float shadowRadius = shadowOption.getFloat("shadowRadius");
+            float borderRadius = (float)shadowOption.getDouble("borderRadius");
+            float shadowRadius = (float)shadowOption.getDouble("shadowRadius");
             String backgroundColor = shadowOption.getString("backgroundColor");
             String shadowColor = shadowOption.getString("shadowColor");
-            float offsetX = shadowOption.getFloat("offsetX");
-            float offsetY = shadowOption.getFloat("offsetY");
+            float offsetX = (float)shadowOption.getDouble("offsetX");
+            float offsetY = (float)shadowOption.getDouble("offsetY");
             ShadowDrawable.setShadowDrawable(view,
                             PixelUtil.toPixelFromDIP(borderRadius),
                             Color.parseColor(shadowColor),
