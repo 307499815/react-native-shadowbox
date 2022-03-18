@@ -73,7 +73,7 @@ getInnerStyle(style) {
 }
 
 getOuterStyle(style) {
-    let attrs = ['margin','marginLeft','marginRight','marginTop','marginBottom','position','left','top','right','bottom'];
+    let attrs = ['margin','marginLeft','marginRight','marginTop','marginBottom','position','left','top','right','bottom','width','height'];
     let s = {overflow:'visible'};
     attrs.forEach(a=>s[a] = style[a]);
     return s;
